@@ -1,0 +1,26 @@
+#In this implementation, the TraverseSearch function takes in an array of Book objects and a title string to search for. It then iterates through each book in the array and checks if the book's title matches the desired title. If it does, the function returns the book. If not, it checks if the book has any sub-books. If it does, it recursively calls the TraverseSearch function on the sub-books array. If a book is found in the sub-books, it is returned. If no book is found, the function returns null.
+
+public Book TraverseSearch(Book[] books, string title)
+{
+    foreach (Book book in books)
+    {
+        if (book.Title == title)
+        {
+            return book;
+        }
+        else if (book.SubBooks != null)
+        {
+            Book result = TraverseSearch(book.SubBooks, title);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+    }
+    return null;
+}
+# or你可以在你的代码中调用这个函数，通过传入书籍数组和你想要搜索的标题:
+Book[] books = new Book[] { /* array of books */ };
+string title = "The Great Gatsby";
+Book result = TraverseSearch(books, title);
+# 如果数组中存在Book对象，则返回标题为“the Great Gatsby”的Book对象，如果不存在则返回null。
